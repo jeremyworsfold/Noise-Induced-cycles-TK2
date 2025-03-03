@@ -32,7 +32,9 @@ data_ss = []
 for (conf, fname) in zip(configs, fnames)
     if SIMULATE
         data, conf = ensemble_custom_sim(conf, NUM_SIMS)
-        if SAVE save_res_and_conf(fname, data, conf) end
+        if SAVE
+            save_res_and_conf(fname, data, conf)
+        end
     else
         data, conf = load_res_and_conf(fname)
     end
@@ -41,7 +43,7 @@ end
 
 # Simulate shorter timeseries
 ts_Tend = 1e4
-configs_ts = [@set conf.T_end=ts_Tend for conf in configs]
+configs_ts = [@set conf.T_end = ts_Tend for conf in configs]
 data_ts = []
 for conf in configs
     @info conf.params.kappa, conf.params.beta
@@ -68,14 +70,14 @@ ts_axes = [
         ts_grid1[2, 1],
         yaxisposition = :right,
         yticklabelsvisible = false,
-        xticks = LogTicks(WilkinsonTicks(3, k_min=2)),
+        xticks = LogTicks(WilkinsonTicks(3, k_min = 2)),
         xlabel = L"t",
     ),
     Axis(
         ts_grid2[2, 1],
         yaxisposition = :right,
         yticklabelsvisible = false,
-        xticks = LogTicks(WilkinsonTicks(3, k_min=2)),
+        xticks = LogTicks(WilkinsonTicks(3, k_min = 2)),
         xlabel = L"t",
     ),
 ]
@@ -134,13 +136,7 @@ for (i, (conf, ts_ax, dat_ts, dat_ss, bs)) in
     band!(axmain, yvals, 0.0, s_nullcine.(yvals, β, κ), color = (:black, 0.2))
     lines!(axmain, yvals, s_nullcine.(yvals, β, κ), color = (:black, 0.4))
     arrows!(axmain, yvals, svals, dy_vals, ds_vals, normalize = true)
-    scatter!(
-        axmain,
-        y_star,
-        s_star,
-        color=COLORS[4],
-        markersize = 10
-    )
+    scatter!(axmain, y_star, s_star, color = COLORS[4], markersize = 10)
 
     # y marginal histogram
     manual_density!(

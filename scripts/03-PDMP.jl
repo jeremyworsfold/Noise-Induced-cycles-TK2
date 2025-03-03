@@ -44,15 +44,18 @@ p_plus = probability_fraction(approx, ϕ)
 # STATIONARY DISTRIBUTION FOR X+,X- WITH LNA 
 f1 = fig1()
 ax = Axis(f1[1, 1], xlabel = L"\phi", ylabel = L"\Pi^\ast_\pm(\phi)")
-manual_density!(ax, data["edges"], data["x1"], fillcolor = COLORS[1], label=L"+")
-manual_density!(ax, data["edges"], data["x2"], fillcolor = COLORS[2], label=L"-")
-plot_PDMP!(ax, ϕ, Πp, ϕ1, var = :x1, label=L"+")
-plot_PDMP!(ax, ϕ, Πm, ϕ2, var = :x2, label=L"-")
-axislegend(ax, 
+manual_density!(ax, data["edges"], data["x1"], fillcolor = COLORS[1], label = L"+")
+manual_density!(ax, data["edges"], data["x2"], fillcolor = COLORS[2], label = L"-")
+plot_PDMP!(ax, ϕ, Πp, ϕ1, var = :x1, label = L"+")
+plot_PDMP!(ax, ϕ, Πm, ϕ2, var = :x2, label = L"-")
+axislegend(
+    ax,
     position = :ct,
     padding = 0,
     rowgap = 2,
-    patchsize = (10, 10), patchlabelgap=5, merge=true
+    patchsize = (10, 10),
+    patchlabelgap = 5,
+    merge = true,
 )
 xlims!(ax, extrema(x))
 ylims!(ax, 0, maximum(Π0LNA) * 1.05)

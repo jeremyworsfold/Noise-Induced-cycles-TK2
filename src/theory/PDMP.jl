@@ -16,7 +16,7 @@ struct PDMPStationarySol
     k2::Float64
 end
 
-bounds(p::PDMPStationarySol) = (1/p.k1, 1/p.k2)
+bounds(p::PDMPStationarySol) = (1 / p.k1, 1 / p.k2)
 
 const_norm(p::PDMPStationarySol) =
     cos(π * p.β / 2) * (1 + p.κ) * ((1 - p.κ) / (1 + p.κ))^((1 - p.β) / 2) / (2π * p.κ)
