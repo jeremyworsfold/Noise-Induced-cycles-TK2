@@ -51,18 +51,18 @@ end
 ##############################################################################
 
 function plot_theory!(ax, x, y; var = :x1, args...)
-    return lines!(ax, x, y; color = COLOR_DICT[var], label = LABEL_P_DICT[var], args...)
+    return lines!(ax, x, y; color = COLOR_DICT[var], args...)
 end
 
-function plot_PDMP!(ax, x, y, bound; var = :x1, args...)
-    vlines!(ax, bound, color = COLOR_DICT[var], linestyle = :dash; args...)
+function plot_PDMP!(ax, x, y, bound; var = :x1, linestyle = :solid, args...)
+    vlines!(ax, bound, color = COLOR_DICT[var], linestyle = linestyle; args...)
     return lines!(
         ax,
         x,
         y;
         color = COLOR_DICT[var],
         label = LABEL_P_DICT[var],
-        linestyle = :dash,
+        linestyle = linestyle,
         args...,
     )
 end

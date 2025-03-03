@@ -20,12 +20,11 @@ NUM_SIMS = 100
 SAVE = true
 SAVEFIG = true
 
-kappas = [0.0, 0.5]
+KAPPAS = [0.0, 0.5]
 ts_Tend = 1e4
 
 base_config = load(SimParams, SCRIPTNAME)
-configs = [@set base_config.params.kappa=κ for κ in kappas]
-# configs = [SimParams(1e7, StoichiometryModel(200, 0.0004, κ, 0)) for κ in kappas]
+configs = [@set base_config.params.kappa = κ for κ in KAPPAS]
 fnames = ["$SCRIPTNAME-sym", "$SCRIPTNAME-asym"]
 
 # Simulate for stationary state
@@ -42,7 +41,7 @@ end
 
 # Simulate shorter timeseries
 ts_Tend = 1e4
-configs_ts = [@set conf T_end=ts_Tend for conf in configs]
+configs_ts = [@set conf.T_end=ts_Tend for conf in configs]
 data_ts = []
 for conf in configs
     @info conf.params.kappa, conf.params.beta
@@ -69,17 +68,15 @@ ts_axes = [
         ts_grid1[2, 1],
         yaxisposition = :right,
         yticklabelsvisible = false,
-        xticks = Int.(floor.([0, ts_Tend / 2, ts_Tend])),
+        xticks = LogTicks(WilkinsonTicks(3, k_min=2)),
         xlabel = L"t",
-        xtickformat = values -> [power10fmt(v) for v in values],
     ),
     Axis(
         ts_grid2[2, 1],
         yaxisposition = :right,
         yticklabelsvisible = false,
-        xticks = [0, ts_Tend / 2, ts_Tend],
+        xticks = LogTicks(WilkinsonTicks(3, k_min=2)),
         xlabel = L"t",
-        xtickformat = values -> [power10fmt(v) for v in values],
     ),
 ]
 
@@ -136,11 +133,12 @@ for (i, (conf, ts_ax, dat_ts, dat_ss, bs)) in
     # Vector field
     band!(axmain, yvals, 0.0, s_nullcine.(yvals, β, κ), color = (:black, 0.2))
     lines!(axmain, yvals, s_nullcine.(yvals, β, κ), color = (:black, 0.4))
-    arrows!(axmain, yvals, svals, dy_vals, ds_vals, normalize = false)
+    arrows!(axmain, yvals, svals, dy_vals, ds_vals, normalize = true)
     scatter!(
         axmain,
         y_star,
         s_star,
+        color=COLORS[4],
         markersize = 10
     )
 
@@ -200,7 +198,7 @@ colgap!(f.layout, 1, Relative(0.02))
 f
 
 if SAVEFIG
-    save_fig_and_conf("vec_flow_with_timeseries-2", f, configs[2])
+    save_fig_and_conf("$SCRIPTNAME-ts-flows", f, configs[2])
 end
 
 
@@ -247,10 +245,10 @@ for (f, conf, data, ytcks) in zip(figs, configs, data_ss, yticks)
     hidezdecorations!(ax)
 end
 
-figs[2]
+figs[1]
 
 
 if SAVEFIG
-    save_fig_and_conf("3d-sym-bistability", figs[1], conf, fmt = "png", px_per_unit = 4)
-    save_fig_and_conf("3d-asym-cycles", figs[2], conf, fmt = "png", px_per_unit = 4)
+    save_fig_and_conf("$SCRIPTNAME-sym", figs[1], configs[1], fmt = "png", px_per_unit = 4)
+    save_fig_and_conf("$SCRIPTNAME-asym", figs[2], configs[2], fmt = "png", px_per_unit = 4)
 end
