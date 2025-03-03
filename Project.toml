@@ -1,0 +1,36 @@
+name = "TK2"
+uuid = "88433743-5b5a-437e-a6f1-adc3b895ae44"
+authors = ["Jeremy Worsfold <jeremyworsfold2@gmail.com> and contributors"]
+version = "1.1.0"
+
+[deps]
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+Catalyst = "479239e8-5488-4da2-87a7-35f2df7eef83"
+ColorSchemes = "35d6a980-a343-548e-a6ea-1d62b119f2f4"
+Colors = "5ae59095-9a9b-59fe-a467-6f913c188581"
+Configurations = "5218b696-f38b-4ac9-8b61-a12ec717816d"
+DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+Format = "1fa38f19-a742-5d3f-a2b9-30dd87b9d5f8"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+Integrals = "de52edbc-65ea-441a-8357-d3a637375a31"
+JLD = "4138dd39-2aa7-5051-a626-17a0bb65d9c8"
+JuliaFormatter = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
+LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
+ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
+Setfield = "efcf1570-3423-57d1-acb7-fd33fddbac46"
+SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

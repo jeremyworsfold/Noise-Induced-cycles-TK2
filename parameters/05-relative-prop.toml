@@ -1,0 +1,5 @@
+
+[params]
+N = 100
+kappa = 0.5
+beta = 0.2
