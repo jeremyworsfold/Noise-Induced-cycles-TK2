@@ -4,7 +4,8 @@
 Second order PDMP approximation parameters
 
 # Fields:
-- `γ::Float64`: sqrt ratio of decay rates
+- `κ::Float64`: bias in the degradation rates
+- `β::Float64`: boas in the influx rates
 - `k1::Float64`: decay rate in state 1
 - `k2::Float64`: decay rate in state 2
 """
@@ -14,6 +15,8 @@ struct PDMPStationarySol
     k1::Float64
     k2::Float64
 end
+
+bounds(p::PDMPStationarySol) = (1 / p.k1, 1 / p.k2)
 
 const_norm(p::PDMPStationarySol) =
     cos(π * p.β / 2) * (1 + p.κ) * ((1 - p.κ) / (1 + p.κ))^((1 - p.β) / 2) / (2π * p.κ)

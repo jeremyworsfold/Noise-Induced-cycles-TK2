@@ -2,6 +2,5 @@ T_end = 1e8
 
 [params]
 N = 100.0
-D = 0.0002
+D = 0.0001
 kappa = 0.5
-beta = 0.2
