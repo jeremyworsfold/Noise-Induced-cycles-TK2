@@ -15,4 +15,4 @@ For longer simulations a specific Gillespie was written for this system in `cust
 
 `parameters` contains the simulation specifications for each figure. The simulations will likely take a long time so `T_end` can be reduced to obtain results more quickly.
 
-![Noise-induced cycles figure](https://raw.githubusercontent.com/jeremyworsfold/Noise-Induced-cycles-TK2/tree/main/figures/02-timeseries-and-cycles.png)
+![Noise-induced cycles figure](https://raw.githubusercontent.com/jeremyworsfold/Noise-Induced-cycles-TK2/main/figures/02-timeseries-and-cycles.png)
