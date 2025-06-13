@@ -69,54 +69,21 @@ end
 
 CairoMakie.activate!()
 f = fig_in_cm(13, 12.2)
-# ts_grid1 = f[1, 1] = GridLayout()
-# ts_grid2 = f[2, 1] = GridLayout()
-# axtop1 = Axis(ts_grid1[1, 1], height=PIXEL_SCALE)
-# axtop2 = Axis(ts_grid2[1, 1], height=PIXEL_SCALE)
-# axtop1 = Axis(f[1, 1], height=0.9 * PIXEL_SCALE)
-# axtop2 = Axis(f[2, 1], height=0.9 * PIXEL_SCALE)
 ts_axes = [
     Axis(
         f[1, 1],
-        # height=PIXEL_SCALE,
-        # yaxisposition=:right,
-        # yticklabelsvisible=false,
         xticks=LogTicks(WilkinsonTicks(3, k_min=2)),
         xlabel=L"t",
         ylabel=L"s",
     ),
     Axis(
         f[2, 1],
-        # height=0.9 * PIXEL_SCALE,
-        # yaxisposition=:right,
-        # yticklabelsvisible=false,
         xticks=LogTicks(WilkinsonTicks(3, k_min=2)),
         xlabel=L"t",
         ylabel=L"s",
     ),
 ]
 
-# hidedecorations!(axtop1)
-# hidespines!(axtop1)
-# rowgap!(ts_grid1, 1, Relative(0.03))
-# hidedecorations!(axtop2)
-# hidespines!(axtop2)
-# rowgap!(ts_grid2, 1, Relative(0.03))
-
-# text!(
-#     axtop1,
-#     Point3f(0.5, 0.5, 0),
-#     text="Fluctuating Population",
-#     space=:relative,
-#     align=(:center, :center),
-# )
-# text!(
-#     axtop2,
-#     Point3f(0.5, 0.5, 0),
-#     text="Population growth and decay",
-#     space=:relative,
-#     align=(:center, :center),
-# )
 linkxaxes!(ts_axes...)
 
 
@@ -125,17 +92,10 @@ bounds = [(0.5, 1.5), (1 / (1 + 0.5) - 0.2, 1 / (1 - 0.5) + 0.2)]
 for (i, (conf, ts_ax, dat_ts, dat_ss, bs)) in
     enumerate(zip(configs, ts_axes, data_ts, data_ss, bounds))
     # Axes
-    # gr = f[i, 2] = GridLayout()
-    # axmain = Axis(gr[1, 1], xlabel=L"y", ylabel=L"s", xticks=[-1, 0, 1])
-    # axtop = Axis(gr[1, 1], height=0.8 * PIXEL_SCALE)
-    # axright = Axis(gr[2, 2], width=0.8 * PIXEL_SCALE)
     axmain = Axis(f[i, 2], xticks=[-1, 0, 1], yticklabelsvisible=false)
     axright1 = Axis(f[i, 3], width=0.8 * PIXEL_SCALE)
     axright2 = Axis(f[i, 4], width=0.8 * PIXEL_SCALE)
-    # axright1 = Axis(f[i, 4], ylabel=L"s", xticks=[-1, 0, 1], width=0.8 * PIXEL_SCALE)
-    # hideydecorations!(axmain)
     linkyaxes!(axmain, axright1, axright2)
-    # linkxaxes!(axmain, axtop)
 
     # Calculate vector fields
     β = conf.params.beta
@@ -153,25 +113,9 @@ for (i, (conf, ts_ax, dat_ts, dat_ss, bs)) in
     func(pt) = Point2f(dy(pt[2], pt[1], β, κ), ds(pt[2], pt[1], β, κ))
     # Vector field
     band!(axmain, yvals, 0.0, s_nullcine.(yvals, β, κ), color=(:black, 0.2))
-    # lines!(axmain, yvals, s_nullcine.(yvals, β, κ), color = (:black, 0.4))
-    # arrows!(axmain, yvals, svals, dy_vals, ds_vals, normalize = true)
     streamplot!(axmain, func, yvals, svals, arrow_size=6, color=x -> 1, colormap=["#333", "#444"], density=0.45, linewidth=0.7, colorscale=Makie.pseudolog10, quality=100, gridsize=(35, 35))
     scatter!(axmain, y_star, s_star, color=COLORS[4], markersize=10, strokewidth=0.7, strokecolor=:black)
 
-    # y marginal histogram
-    # manual_density!(
-    #     axtop,
-    #     range(-1, 1, length(dat_ss["y"]) - 1),
-    #     dat_ss["y"][1:end-2],
-    #     color=(COLORS[3], 0.5),
-    # )
-    # lines!(
-    #     axtop,
-    #     range(-1, 1, length(dat_ss["y"]) - 2),
-    #     dat_ss["y"][1:end-2],
-    #     color=COLORS[3],
-    # )
-    # ylims!(axtop, 0, 1.2)
     xlims!(axmain, -1, 1)
 
     # s marginal histogram
@@ -195,23 +139,17 @@ for (i, (conf, ts_ax, dat_ts, dat_ss, bs)) in
     xlims!(
         axright1,
         low=0.0,
-        # high=maximum(vcat(dat_ss["x1"][10:end], dat_ss["x2"][10:end])) / 2,
     )
     xlims!(
         axright2,
         low=0.0,
-        # high=maximum(vcat(dat_ss["x1"][10:end], dat_ss["x2"][10:end])) / 2,
     )
 
     # formatting
-    # hidedecorations!(axtop)
-    # hidespines!(axtop, :t, :r, :l)
     hidedecorations!(axright1)
     hidespines!(axright1, :t, :r, :b)
     hidedecorations!(axright2)
     hidespines!(axright2, :t, :r, :b)
-    # colgap!(gr, 1, Relative(0.03))
-    # rowgap!(gr, 1, Relative(0.03))
 
 
     t = dat_ts["t"]

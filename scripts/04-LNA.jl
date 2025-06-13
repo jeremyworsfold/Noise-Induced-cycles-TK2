@@ -56,7 +56,6 @@ for (i, (ax, fname, conf)) in enumerate(zip(axs, fnames, configs))
     manual_hist!(ax, data["edges"], data["x2"]; color=COLORS[2], label=L"P_-^*(s)")
     plot_theory!(ax, x, ΠpLNA, var=:x1, label=L"P_+^*(s)")
     plot_theory!(ax, x, ΠmLNA, var=:x2, label=L"P_-^*(s)")
-    # manual_hist!(ax, data["edges"], data["s"]; color = COLORS[4])
     plot_theory!(ax, x, Π0LNA, var=:s, linestyle=:dot, label=L"P_0^*(s)")
 
     xlims!(ax, extrema(x))

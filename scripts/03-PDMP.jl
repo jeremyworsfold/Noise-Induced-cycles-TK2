@@ -78,7 +78,6 @@ inset_ax = inset_axis(f2[1, 1], xlabel=L"\phi", ylabel=L"\Pi^*_0(\phi)")
 fill_between!(ax, xvals, 0, frac, color=(COLORS[1], 0.5))
 fill_between!(ax, xvals, frac, 1, color=(COLORS[2], 0.5))
 lines!(ax, ϕ, p_plus, color=:black, linestyle=:dash)
-# lines!(ax, x, p_plus_LNA, color=(:black, 0.5))
 xlims!(ax, TK2.bounds(approx) .+ (-0.1, 0.1))
 ylims!(ax, 0, 1)
 
