@@ -1,0 +1,7 @@
+[model.MeshFromFile]
+filename = "tk2.msh"
+
+[fe_specs]
+polynomial_order = 1
+integration_degree = 5
+conformity = "H1"

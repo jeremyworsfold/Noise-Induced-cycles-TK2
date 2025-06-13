@@ -1,0 +1,4 @@
+[deps]
+Glob = "c27321d9-0574-5035-807b-f59d2c89b15c"
+Gridap = "56d4f2e9-7ea1-5844-9cf6-b9c51ca7ce8e"
+GridapFokkerPlanck = "67201ed7-5efa-47f0-8e00-afb2dbe7325d"
