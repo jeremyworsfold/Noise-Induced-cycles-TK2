@@ -1,4 +1,4 @@
-# Noise-induced cycles in the Togashi-Kaneko model with species-dependent degradation
+# Stochastically bistable growth and decay in the Togashi-Kaneko model
 
 Contains a package and scripts written in Julia used to generate the figures for the article located at:
 
@@ -15,4 +15,4 @@ For longer simulations a specific Gillespie was written for this system in `cust
 
 `parameters` contains the simulation specifications for each figure. The simulations will likely take a long time so `T_end` can be reduced to obtain results more quickly.
 
-![Noise-induced cycles figure](https://raw.githubusercontent.com/jeremyworsfold/Noise-Induced-cycles-TK2/main/figures/02-timeseries-and-cycles.png)
+![Stochastically bistable growth and decay in the Togashi-Kaneko model figure](https://raw.githubusercontent.com/jeremyworsfold/Noise-Induced-cycles-TK2/main/figures/02-timeseries-and-cycles.png)
