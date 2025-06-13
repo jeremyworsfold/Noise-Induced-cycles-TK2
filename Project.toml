@@ -12,8 +12,11 @@ Configurations = "5218b696-f38b-4ac9-8b61-a12ec717816d"
 DifferentialEquations = "0c46a032-eb83-5123-abaf-570d42b7fbaa"
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 Format = "1fa38f19-a742-5d3f-a2b9-30dd87b9d5f8"
+ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
 GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+ImageFiltering = "6a3955dd-da59-5b1f-98d4-e7296123deb5"
 Integrals = "de52edbc-65ea-441a-8357-d3a637375a31"
+Interpolations = "a98d9a8b-a2ab-59e6-89dd-64a1c18fca59"
 JLD = "4138dd39-2aa7-5051-a626-17a0bb65d9c8"
 JuliaFormatter = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
 LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
@@ -27,6 +30,9 @@ Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 
 [compat]
+ForwardDiff = "0.10.38"
+ImageFiltering = "0.7.9"
+Interpolations = "0.15.1"
 julia = "1"
 
 [extras]

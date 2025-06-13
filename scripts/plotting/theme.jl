@@ -9,12 +9,13 @@ Attributes(
     ),
     linewidth = 1,
     colormap = :PRGn,
+    strokewidth=0.1,
     Scatter = (
         color = COLORS[4],
         markersize = 7,
         marker = :circle,
-        strokewidth = 0.7,
-        strokecolor = :black,
+        # strokewidth = 0.7,
+        # strokecolor = :black,
     ),
     grid = false,
     Axis = (
@@ -34,5 +35,5 @@ Attributes(
         rowgap = -8,
         patchlabelgap = 2,
     ),
-    Arrows = (arrowsize = 4, lengthscale = 0.08, arrowcolor = :black, normalize = true),
+    Arrows = (arrowsize = 1, lengthscale = 0.08, arrowcolor = (:black,0.0), normalize = true),
 )

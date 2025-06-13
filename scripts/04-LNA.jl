@@ -24,8 +24,8 @@ fnames = ["$SCRIPTNAME-sym", "$SCRIPTNAME-asym"]
 
 f1 = fig_in_cm(9, 8.6)
 axs = [
-    Axis(f1[1, 1], ylabel = L"P^\ast_\pm(s)", xticklabelsvisible = false),
-    Axis(f1[2, 1], ylabel = L"P^\ast_\pm(s)", xlabel = L"s"),
+    Axis(f1[1, 1], ylabel=L"P^\ast(s)", xticklabelsvisible=false),
+    Axis(f1[2, 1], ylabel=L"P^\ast(s)", xlabel=L"s"),
 ]
 linkxaxes!(axs...)
 rowgap!(f1.layout, Relative(0.02))
@@ -52,12 +52,12 @@ for (i, (ax, fname, conf)) in enumerate(zip(axs, fnames, configs))
     ΠpLNA, ΠmLNA = theoretical_LNA_pdfs(approx, x, N)
     Π0LNA = ΠpLNA .+ ΠmLNA
 
-    manual_hist!(ax, data["edges"], data["x1"]; color = COLORS[1], label = L"P_+^*(s)")
-    manual_hist!(ax, data["edges"], data["x2"]; color = COLORS[2], label = L"P_-^*(s)")
-    plot_theory!(ax, x, ΠpLNA, var = :x1, label = L"P_+^*(s)")
-    plot_theory!(ax, x, ΠmLNA, var = :x2, label = L"P_-^*(s)")
+    manual_hist!(ax, data["edges"], data["x1"]; color=COLORS[1], label=L"P_+^*(s)")
+    manual_hist!(ax, data["edges"], data["x2"]; color=COLORS[2], label=L"P_-^*(s)")
+    plot_theory!(ax, x, ΠpLNA, var=:x1, label=L"P_+^*(s)")
+    plot_theory!(ax, x, ΠmLNA, var=:x2, label=L"P_-^*(s)")
     # manual_hist!(ax, data["edges"], data["s"]; color = COLORS[4])
-    plot_theory!(ax, x, Π0LNA, var = :s, linestyle = :dash, label = L"P^*(s)")
+    plot_theory!(ax, x, Π0LNA, var=:s, linestyle=:dot, label=L"P_0^*(s)")
 
     xlims!(ax, extrema(x))
     ylims!(ax, 0, maximum(Π0LNA) * 1.05)
@@ -65,11 +65,11 @@ for (i, (ax, fname, conf)) in enumerate(zip(axs, fnames, configs))
     if i == 2
         axislegend(
             ax,
-            padding = 0,
-            rowgap = 2,
-            patchsize = (10, 10),
-            patchlabelgap = 5,
-            merge = true,
+            padding=0,
+            rowgap=2,
+            patchsize=(10, 10),
+            patchlabelgap=5,
+            merge=true,
         )
     end
 end
@@ -77,5 +77,5 @@ end
 f1
 
 if SAVEFIG
-    save_fig(SCRIPTNAME, f1)
+    save_fig_and_conf(SCRIPTNAME, f1, configs[2])
 end
